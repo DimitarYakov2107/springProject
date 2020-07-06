@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+   <head>
+      <meta charset="UTF-8">
+      <title>Product List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+      <div class="page-title">Order List</div>
+      <div class="demo-container">
+	     <table>
+	        <tr th:each="orderInfo : ${paginationResult.list}">
+	           <td>Order date: <span th:utext="${#dates.format(orderInfo.orderDate, 'dd-MM-yyyy')}"></span></td>
+	           <td>Order number: <a th:href="@{|/order?orderId=${orderInfo.id}|}"><span th:utext="${orderInfo.orderNum}"></span></a></td>
+	           <td>Order amount: <span th:utext="${#numbers.formatDecimal(orderInfo.amount,3,2,'COMMA')}"></span></td>
+	           <td>Customer name: <span th:utext="${orderInfo.customerName}"></span></td>
+	           <td>Customer address: <span th:utext="${orderInfo.customerAddress}"></span></td>
+	           <td>Customer email: <span th:utext="${orderInfo.customerEmail}"></span></td>
+	           <td>Customer phone: <span th:utext="${orderInfo.customerPhone}"></span></td>
+	        </tr>
+	     </table>
+      </div>
+      <div>
+      	<img th:src="@{/img/home.jpg}" class="homeimage" />
+      </div>
+      <th:block th:include="/_footer"></th:block>
+   </body>
+</html>
