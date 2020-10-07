@@ -21,10 +21,3 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-schedules:
-- cron: "0 0,3,6,9,12,15,18 * * *"
-  displayName: Daily midnight build
-  branches:
-    include:
-    - master
-  always: true
